@@ -49,7 +49,7 @@ const CaptureID = () => {
     try {
       const res = await axios.post('http://localhost:5000/process', {
         //filename: 'test.png',
-        filename: {test_copy},
+        filename: test_copy,
         id_type: 'National ID',
       });
   
@@ -92,92 +92,18 @@ const CaptureID = () => {
     alert("Error accessing the camera: ", error);
   };
   
-  // const handleCapture = async () => {
-  //   setLoading(true);
-  //   const rawImage = webcamRef.current.getScreenshot();
-  //   const imageSrc = await cropImageToIDSize(rawImage);
-  //   setCapturedImage(null);
-  //   setStructuredData(null);
-  //   setRawText('');
-    
-  //   setSuccessMessage('');
-  //   setLoading(true);
-    
-
-  //   const progressMessages = [
-  //     "Downloading pre-trained models...",
-  //     "Image segmentation...",
-  //     "Text detection...",
-  //     "Extracting text...",
-  //     "Processing done!"
-  //   ];
-
-  //   let msgIndex = 0;
-  //   setProgressMessage(progressMessages[msgIndex]);
-  //   const intervalId = setInterval(() => {
-  //     msgIndex++;
-  //     if (msgIndex < progressMessages.length) {
-  //       setProgressMessage(progressMessages[msgIndex]);
-  //     }
-  //   }, 30000);
-  
-  //   try {
-  //     //const res = await axios.post('https://e07b-89-147-6-105.ngrok-free.app/upload', { 
-  //     const res = await axios.post('http://localhost:5000/upload', {  // change this URLs to your ngrok given URL
-  //       image: imageSrc,
-  //       idType: idType,
-  //     });
-  //     const { filename } = res.data;
-  
-  //   //const imageUrl = `https://8c49-102-216-154-25.ngrok-free.app/images/${filename}`;
-  //     const imageUrl = `http://localhost:5000/images/${filename}`; //change this URLs to your ngrok given URL
-  //     setCapturedImage(imageUrl);
-  //     setSuccessMessage("Image uploaded successfully!");
-  //     closeModal();
-  //     //const processRes = await axios.post('https://8c49-102-216-154-25.ngrok-free.app/process', {
-  //     const processRes = await axios.post('http://localhost:5000/process', {     //change this URLs to your ngrok given URL
-  //       filename: filename,
-  //       id_type: idType,
-  //     });
-
-  //     const { structured_data } = processRes.data;
-
-  //     //setStructuredData(structured_data);
-  //     //setSavingToDB(true);
-  //     //setDbSavedMessage("Saving to Database...");
-  //     setTimeout(() => {
-  //     //setDbSavedMessage("Records saved");
-  //     setTimeout(() => {
-  //       setSavingToDB(false);
-  //       setDbSavedMessage('');
-  //     }, 2000); 
-  //   }, 4000);
-  //   } catch (err) {
-  //     console.error("Error:", err);
-  //     setSuccessMessage("Failed to process image. Please try again.");
-  //   }
-  //   finally {
-  //     clearInterval(intervalId);
-  //     setLoading(false);
-  //     setProgressMessage('');
-  //   }
-  // };
-
   const handleCapture = async () => {
     setLoading(true);
-    const rawImage = webcamRef.current.getScreenshot();  // Capture the image (Base64 encoded string)
-    const imageSrc = await cropImageToIDSize(rawImage);  // Optionally crop to a specific size
-    setCapturedImage(imageSrc);  // Set the captured image for display
-    
-    // Reset other states
+    const rawImage = webcamRef.current.getScreenshot();
+    const imageSrc = await cropImageToIDSize(rawImage);
+    setCapturedImage(null);
     setStructuredData(null);
     setRawText('');
+    
     setSuccessMessage('');
     setLoading(true);
-  
-    // Show an alert with the captured image URI (Base64 format)
-    alert(`Captured Image URI: ${imageSrc}`);
-  
+    
+
     const progressMessages = [
       "Downloading pre-trained models...",
       "Image segmentation...",
@@ -185,7 +111,7 @@ const CaptureID = () => {
       "Extracting text...",
       "Processing done!"
     ];
-  
+
     let msgIndex = 0;
     setProgressMessage(progressMessages[msgIndex]);
     const intervalId = setInterval(() => {
@@ -196,41 +122,115 @@ const CaptureID = () => {
     }, 30000);
   
     try {
-      // Upload the captured image to your server
-      const res = await axios.post('http://localhost:5000/upload', {
+      //const res = await axios.post('https://e07b-89-147-6-105.ngrok-free.app/upload', { 
+      const res = await axios.post('http://localhost:5000/upload', {  // change this URLs to your ngrok given URL
         image: imageSrc,
         idType: idType,
       });
-  
-      // Extract the filename from the server response
       const { filename } = res.data;
-      const imageUrl = `http://localhost:5000/images/${filename}`; // Construct the URL for the uploaded image
-      setCapturedImage(imageUrl);  // Set the captured image path (URL)
+  
+    //const imageUrl = `https://8c49-102-216-154-25.ngrok-free.app/images/${filename}`;
+      const imageUrl = `http://localhost:5000/images/${filename}`; //change this URLs to your ngrok given URL
+      setCapturedImage(imageUrl);
       setSuccessMessage("Image uploaded successfully!");
       closeModal();
-  
-      // Process the uploaded image
-      const processRes = await axios.post('http://localhost:5000/process', {
+      //const processRes = await axios.post('https://8c49-102-216-154-25.ngrok-free.app/process', {
+      const processRes = await axios.post('http://localhost:5000/process', {     //change this URLs to your ngrok given URL
         filename: filename,
         id_type: idType,
       });
-  
+
       const { structured_data } = processRes.data;
-  
-      // Set structured data or perform other operations as needed
+
+      //setStructuredData(structured_data);
+      //setSavingToDB(true);
+      //setDbSavedMessage("Saving to Database...");
+      setTimeout(() => {
+      //setDbSavedMessage("Records saved");
       setTimeout(() => {
         setSavingToDB(false);
         setDbSavedMessage('');
-      }, 2000);
+      }, 2000); 
+    }, 4000);
     } catch (err) {
       console.error("Error:", err);
       setSuccessMessage("Failed to process image. Please try again.");
-    } finally {
+    }
+    finally {
       clearInterval(intervalId);
       setLoading(false);
       setProgressMessage('');
     }
   };
+
+  // const handleCapture = async () => {
+  //   setLoading(true);
+  //   const rawImage = webcamRef.current.getScreenshot();  // Capture the image (Base64 encoded string)
+  //   const imageSrc = await cropImageToIDSize(rawImage);  // Optionally crop to a specific size
+  //   setCapturedImage(imageSrc);  // Set the captured image for display
+    
+  //   // Reset other states
+  //   setStructuredData(null);
+  //   setRawText('');
+  //   setSuccessMessage('');
+  //   setLoading(true);
+  
+  //   // Show an alert with the captured image URI (Base64 format)
+  //   alert(`Captured Image URI: ${imageSrc}`);
+  
+  //   const progressMessages = [
+  //     "Downloading pre-trained models...",
+  //     "Image segmentation...",
+  //     "Text detection...",
+  //     "Extracting text...",
+  //     "Processing done!"
+  //   ];
+  
+  //   let msgIndex = 0;
+  //   setProgressMessage(progressMessages[msgIndex]);
+  //   const intervalId = setInterval(() => {
+  //     msgIndex++;
+  //     if (msgIndex < progressMessages.length) {
+  //       setProgressMessage(progressMessages[msgIndex]);
+  //     }
+  //   }, 30000);
+  
+  //   try {
+  //     // Upload the captured image to your server
+  //     const res = await axios.post('http://localhost:5000/upload', {
+  //       image: imageSrc,
+  //       idType: idType,
+  //     });
+  
+  //     // Extract the filename from the server response
+  //     const { filename } = res.data;
+  //     const imageUrl = `http://localhost:5000/images/${filename}`; // Construct the URL for the uploaded image
+  //     setCapturedImage(imageUrl);  // Set the captured image path (URL)
+  //     setSuccessMessage("Image uploaded successfully!");
+  //     closeModal();
+  
+  //     // Process the uploaded image
+  //     const processRes = await axios.post('http://localhost:5000/process', {
+  //       filename: filename,
+  //       id_type: idType,
+  //     });
+  
+  //     const { structured_data } = processRes.data;
+  
+  //     // Set structured data or perform other operations as needed
+  //     setTimeout(() => {
+  //       setSavingToDB(false);
+  //       setDbSavedMessage('');
+  //     }, 2000);
+  //   } catch (err) {
+  //     console.error("Error:", err);
+  //     setSuccessMessage("Failed to process image. Please try again.");
+  //   } finally {
+  //     clearInterval(intervalId);
+  //     setLoading(false);
+  //     setProgressMessage('');
+  //   }
+  // };
   
   const openModal = () => {
     setModalIsOpen(true);
@@ -374,6 +374,7 @@ const CaptureID = () => {
           <div className={`scan-line ${scanColor}`}></div>
         </div>
         <button onClick={handleCapture} className="capture-btn">Capture</button>
+
         <button onClick={handleTestImage} className="capture-btn1">Test Capture</button>
         {/* <button onClick={{}} className="capture-btn1">Test Capture</button> */}
         <button onClick={closeModal} className="close-modal-btn">Close</button>
