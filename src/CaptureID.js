@@ -305,8 +305,8 @@ const CaptureID = () => {
           <div className={`scan-line ${scanColor}`}></div>
         </div>
         <button onClick={handleCapture} className="capture-btn">Capture</button>
-        {/* <button onClick={handleTestImage} className="capture-btn1">Test Capture</button> */}
-        <button onClick={{}} className="capture-btn1">Test Capture</button>
+        <button onClick={handleTestImage} className="capture-btn1">Test Capture</button>
+        {/* <button onClick={{}} className="capture-btn1">Test Capture</button> */}
         <button onClick={closeModal} className="close-modal-btn">Close</button>
 
       </Modal>
