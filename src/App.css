@@ -1,0 +1,248 @@
+/* src/App.css */
+.capture-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+h1 {
+  margin-bottom: 10px;
+}
+
+.id-select {
+  padding: 8px;
+  font-size: 16px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+
+
+.capture-button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+.capture-button1 {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+.capture-button:hover {
+  background-color: #45a049;
+}
+
+/* Modal Styles */
+.modal-container {
+  position: relative;
+  width: 80%;
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* src/styles.css or a specific CSS file for your app */
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-container {
+  position: relative;
+  background: white;
+  border-radius: 8px;
+  width: 80%;
+  max-width: 500px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Create the scanning line animation */
+@keyframes scanEffect {
+  0% {
+    top: 0%;
+  }
+  50% {
+    top: 50%;
+  }
+  100% {
+    top: 100%;
+  }
+}
+
+.db-popup {
+  position: fixed;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -30%);
+  background-color: white;
+  padding: 30px 40px;
+  border: 2px solid #888;
+  border-radius: 10px;
+  z-index: 1000;
+  text-align: center;
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+}
+
+.db-popup .spinner {
+  width: 30px;
+  height: 30px;
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #4CAF50;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 10px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+
+.overlay-box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 8.56cm; /* Standard width for ID */
+  height: 5.50cm; /* Standard height for ID */
+  background: rgba(255, 0, 0, 0.3);
+  transform: translate(-50%, -50%);
+  border: 2px solid red;
+  transition: all 0.3s ease;
+}
+
+/* Add a scanning line inside the overlay box */
+.overlay-box .scan-line {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 4px; /* Increased thickness of the scanning line */
+  background-color: red;
+  animation: scanEffect 2s linear infinite; /* Keep the scanning effect going */
+}
+
+/* Scanning line changes color */
+.overlay-box .scan-line.red {
+  background-color: red;
+}
+
+.overlay-box .scan-line.green {
+  background-color: green;
+}
+
+.overlay-box.fitted {
+  background: rgba(0, 255, 0, 0.3);
+  border: 2px solid green;
+}
+
+.capture-btn {
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.capture-btn:hover {
+  background-color: #218838;
+}
+
+.capture-btn1 {
+  margin-top: 20px;
+  padding: 10px;
+  background-color: blue;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.capture-btn:hover1 {
+  background-color: #218838;
+}
+
+
+.close-modal-btn {
+  margin-top: 10px;
+  padding: 10px;
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.close-modal-btn:hover {
+  background-color: #c82333;
+}
+
+/* Add in your CSS file or in a <style> block */
+.spinner {
+  margin-top: 20px;
+  border: 6px solid #f3f3f3;
+  border-top: 6px solid #3498db;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+.webcam-container {
+  position: relative;
+  text-align: center;
+  height: 100vh; /* Make it take up the full screen */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: #000; /* Black background for full-screen webcam effect */
+}
+
+.exit-button {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 10px 20px;
+  background-color: #ff5c5c;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}
+.exit-button:hover {
+  background-color: #ff3d3d;
+}

@@ -1,0 +1,9 @@
+node_modules/
+build/
+server.py
+requirements.txt
+local.db
+.env
+utils/
+images/
+vision-id-app/
