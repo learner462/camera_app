@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/camera_app/static/css/main.46b18112.css",
-    "main.js": "/camera_app/static/js/main.3584ff63.js",
+    "main.js": "/camera_app/static/js/main.62e3009d.js",
     "static/js/453.b8dfe94e.chunk.js": "/camera_app/static/js/453.b8dfe94e.chunk.js",
     "static/media/test_copy.jpg": "/camera_app/static/media/test_copy.13248dce14fab84a5a3d.jpg",
     "index.html": "/camera_app/index.html",
     "main.46b18112.css.map": "/camera_app/static/css/main.46b18112.css.map",
-    "main.3584ff63.js.map": "/camera_app/static/js/main.3584ff63.js.map",
+    "main.62e3009d.js.map": "/camera_app/static/js/main.62e3009d.js.map",
     "453.b8dfe94e.chunk.js.map": "/camera_app/static/js/453.b8dfe94e.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.46b18112.css",
-    "static/js/main.3584ff63.js"
+    "static/js/main.62e3009d.js"
   ]
 }
